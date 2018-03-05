@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./main.css">
+    <title>Nomad</title>
+  </head>
+  <body>
+    <div id="Overview"></div>
+    <div id="Recommendations"></div>
+    <div id="Reviews"></div>
+    <div id="Nearby"></div>
+    <div id="Q-and-A"></div>
+    <script src="/lib/react.development.js"></script>
+    <script src="/lib/react-dom.development.js"></script>
+    <script src="http://localhost:3001/app.js"></script>
+    <script src="http://localhost:3002/app.js"></script>
+    <script src="http://localhost:3003/app.js"></script>
+    <script src="http://localhost:3004/app.js"></script>
+    <script>
+      ReactDOM.render(
+        React.createElement(Overview),
+        document.getElementById('Overview')
+      );
+      ReactDOM.render(
+        React.createElement(Recommendations),
+        document.getElementById('Recommendations')
+      );
+      ReactDOM.render(
+        React.createElement(Reviews),
+        document.getElementById('Reviews')
+      );
+      ReactDOM.render(
+        React.createElement(Nearby),
+        document.getElementById('Nearby')
+      );
+      ReactDOM.render(
+        React.createElement(Q-and-A),
+        document.getElementById('Q-and-A')
+      );
+    </script>
+  </body>
+</html>
