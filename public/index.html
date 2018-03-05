@@ -13,29 +13,33 @@
     <div id="Q-and-A"></div>
     <script src="/lib/react.development.js"></script>
     <script src="/lib/react-dom.development.js"></script>
-    <script src="http://localhost:3001/app.js"></script>
-    <script src="http://localhost:3002/app.js"></script>
-    <script src="http://localhost:3003/app.js"></script>
-    <script src="http://localhost:3004/app.js"></script>
+    <script src="http://localhost:3001/bundle.js"></script>
+    <script src="http://localhost:3002/bundle.js"></script>
+    <script src="http://localhost:3003/bundle.js"></script>
+    <script src="http://localhost:3004/bundle.js"></script>
     <script>
+      const url = window.location.pathname;
+      url = url.split('/');
+      attrID = parseInt(url[1]);
+      
       ReactDOM.render(
-        React.createElement(Overview),
+        React.createElement(Overview, attrID),
         document.getElementById('Overview')
       );
       ReactDOM.render(
-        React.createElement(Recommendations),
+        React.createElement(Recommendations, attrID),
         document.getElementById('Recommendations')
       );
       ReactDOM.render(
-        React.createElement(Reviews),
+        React.createElement(Reviews, attrID),
         document.getElementById('Reviews')
       );
       ReactDOM.render(
-        React.createElement(Nearby),
+        React.createElement(Nearby, attrID),
         document.getElementById('Nearby')
       );
       ReactDOM.render(
-        React.createElement(Q-and-A),
+        React.createElement(Q-and-A, attrID),
         document.getElementById('Q-and-A')
       );
     </script>
