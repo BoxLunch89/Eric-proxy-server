@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: nearbyapp
+      POSTGRES_DB: nearbyitems
+
+  proxy: 
+    build: ./
+
+  overview:
+    env_file:
+      - .env
+    image: emsando/overview-component
+    depends_on:
+      - 'database'
+    ports:
+      - 3002:3002
+    environment: 
+      - OVERVIEW_DATABASE_URL: "{OVERVIEW_DATABASE_URL}"
+      - OVERVIEW_GOOGLE_MAPS_API_KEY: "${OVERVIEW_GOOGLE_MAPS_API_KEY}"
+
+  nearby-component:
+    env_file:
+      - .env
+    image: kguinto/nearby-component
+    command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; npm start'
+    volumes:
+      - .:/nearby_service/
+    ports:
+      - "3003:3003"
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_URL: "{NEARBY_DATABASE_URL}"
+      NEARBY_GOOGLE_MAPS_API_KEY: "${NEARBY_GOOGLE_MAPS_API_KEY}"
+
+  recommendations:
+    image: zinoki/recommendations-component
+    depends_on:
+      - 'database'
+    ports:
+      -
+
+  reviews:
+    image: bdduong/reviews-component
+    depends_on:
+      - 'database'
+    ports:
+      -
+
+  q-and-a:
+    image: kylechambers/q-and-a
+    depends_on:
+      - 'database'
+    ports:
+      -
+
+  database:
+    image: mongo

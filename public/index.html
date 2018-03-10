@@ -14,15 +14,15 @@
     <div id="Q-and-A"></div>
     <script src="/lib/react.development.js"></script>
     <script src="/lib/react-dom.development.js"></script>
-    <script src="http://localhost:3001/bundle.js"></script>
-    <script src="http://localhost:3002/bundle.js"></script>
-    <script src="http://localhost:3003/bundle.js"></script>
-    <script src="http://localhost:3004/bundle.js"></script>
-    <script src="http://localhost:3005/bundle.js"></script>
+    <script src="/overview/bundle.js"></script>
+    <script src="/recommedations/bundle.js"></script>
+    <script src="/reviews/bundle.js"></script>
+    <script src="/nearby/bundle.js"></script>
+    <script src="/q-and-a/bundle.js"></script>
     <script>
       let url = window.location.pathname;
       url = url.split('/');
-      id = parseInt(url[url.indexOf('listings') + 1]);
+      let id = parseInt(url[1]);
       
       ReactDOM.render(
         React.createElement(Overview, {id: id}),
